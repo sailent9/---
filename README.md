@@ -16,15 +16,12 @@
 ``` bash
 rsync -ac --delete --exclude=".*/" . /tmp/backup
 ```
-
-
-
-
-
-
-
-
-
+нет директории бакап 
+![Screenshot_1](https://github.com/sailent9/---/assets/130309754/41cbb075-4177-49b1-9ef8-e633723c1410)
+создал директорию 
+![Screenshot_2](https://github.com/sailent9/---/assets/130309754/d18c625e-f371-465d-8de8-eb5da64ec6b0)
+создал файл для резервного копирования и повторил команду , видно что файл перенесепн в директорию 
+![Screenshot_3](https://github.com/sailent9/---/assets/130309754/19d6496a-9f1d-4890-a64b-26b86412aa3c)
 
 
 
@@ -38,3 +35,48 @@ rsync -ac --delete --exclude=".*/" . /tmp/backup
 - На проверку направить файл crontab и скриншот с результатом работы утилиты.
 ---------------
 ### Решение 2
+---
+* Что я делеал:
+---
+* Создал файл скрипта backup.sh следующего содержания:
+```bash
+#! /bin/bash
+rsync -a --delete /home/abc/ /tmp/backup
+if [ "$?" -eq 0 ]; then
+        logger "Rsync make a successful backup"
+else    logger "Rsync backup error"
+fi
+```
+---
+* Делаю скрипт исполняемым:
+```bash
+sudo chmod +x backup.sh 
+```
+---
+* Добавляю в планировщик. Вызываю планировщик командой:
+```bash
+sudo crontab -e
+```
+---
+* Делаю запись: запускать срипт /home/abc/backup.sh в 0-ю минуту в 7 часов утра каждый день:
+
+```bash
+0 7 * * * /home/vadim/backup.sh
+```
+---
+
+
+![image](https://github.com/sailent9/---/assets/130309754/e0a11de1-b766-443f-854e-9992d8571a2c)
+
+
+
+
+
+
+
+
+
+
+
+
+
