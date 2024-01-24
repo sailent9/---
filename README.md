@@ -41,7 +41,7 @@ rsync -ac --delete --exclude=".*/" . /tmp/backup
 * Создал файл скрипта backup.sh следующего содержания:
 ```bash
 #! /bin/bash
-rsync -a --delete /home/abc/ /tmp/backup
+rsync -a --delete /home/vadim/ /tmp/backup
 if [ "$?" -eq 0 ]; then
         logger "Rsync make a successful backup"
 else    logger "Rsync backup error"
